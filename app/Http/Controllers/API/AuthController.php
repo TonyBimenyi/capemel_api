@@ -19,7 +19,9 @@ class AuthController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
-            'c_password' => 'required|same:password' 
+            'c_password' => 'required|same:password',
+            'role' =>'required',
+            'telephone' => 'required',
         ]);
 
         if($validator->fails()){
@@ -37,6 +39,8 @@ class AuthController extends Controller
 
         $success['token'] = $user->createToken('MyApp')->plainTextToken;
         $success['name'] = $user->name;
+        $success['telephone'] = $user->telephone;
+        $success['role'] = $user->role;
 
         $response = [
             'success'=>true,

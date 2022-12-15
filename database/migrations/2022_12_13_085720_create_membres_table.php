@@ -23,11 +23,12 @@ return new class extends Migration
             $table->string('colline_membre')->nullable();
             $table->string('commune_membre')->nullable();
             $table->foreignId('nationalite_conjoint')->constrained('pays');
-            $table->string('cin_membre');
+            $table->string('cin_membre')->nullable();
             $table->date('debut_ministere_membre');
             $table->date('debut_cotisation_membre')->nullable();
             $table->date('date_mariage')->nullable();
-            $table->Integer('telephone_membre')->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->Integer('telephone_membre')->unique()->nullable();
             $table->string('photo_membre')->nullable();
             $table->string('statut')->nullable();
             $table->Integer('surintendant');
