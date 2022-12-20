@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->Float('montant_anticipe');
             $table->string('motif')->nullable();
-             $table->string('matricule_membre');
+            $table->string('matricule_membre');
             $table->foreign('matricule_membre')->references('matricule_membre')
             ->on('membres')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_uti')->constrained('users');

@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ConferenceController;
+use App\Http\Controllers\DistrictController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +28,11 @@ Route::controller(AuthController::class)->group(function(){
 });
 Route::controller(UserController::class)->group(function(){
     Route::get('/users','show');
+});
+Route::controller(ConferenceController::class)->group(function(){
+    Route::get('/conferences','show');
+});
+Route::controller(DistrictController::class)->group(function(){
+    Route::post('/store_district','store');
 });
  
