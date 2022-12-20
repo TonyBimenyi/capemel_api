@@ -34,5 +34,6 @@ Route::controller(ConferenceController::class)->group(function(){
 });
 Route::controller(DistrictController::class)->group(function(){
     Route::post('/store_district','store');
+     Route::get('/districts','show');
 });
  
