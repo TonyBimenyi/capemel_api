@@ -14,7 +14,7 @@ class DistrictController extends Controller
         // code...
         $validator = Validator::make($request->all(),[
             'nom_district' => 'required',
-            'id_conference' => 'required|email',
+            'id_conference' => 'required',
         ]);
         if($validator->fails()){
             #code...
@@ -40,6 +40,14 @@ class DistrictController extends Controller
         // code...
         $districts = District::all();
         return $districts;
+
+    }
+    public function update(Request $request,$id)
+    {
+        // code...
+         $updateD = District::findOrFail($id);
+         $input = $request->all();  
+         $updateD->fill($input)->update();
     }
     
 }
