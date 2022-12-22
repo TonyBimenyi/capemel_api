@@ -37,5 +37,6 @@ Route::controller(DistrictController::class)->group(function(){
     Route::post('/store_district','store');
     Route::get('/districts','show');
     Route::put('/update_district/{id}','update');
+    Route::post('/delete_district/{id}','delete');
 });
  

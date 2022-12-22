@@ -49,5 +49,11 @@ class DistrictController extends Controller
          $input = $request->all();  
          $updateD->fill($input)->update();
     }
+    public function delete(Request $request,$id)
+    {
+        // code...
+         $deleteD = District::findOrFail($id);
+         $deleteD->destroy();
+    }
     
 }
