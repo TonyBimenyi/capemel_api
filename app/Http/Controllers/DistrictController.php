@@ -53,7 +53,7 @@ class DistrictController extends Controller
     {
         // code...
          $deleteD = District::findOrFail($id);
-         $deleteD->destroy();
+         $deleteD->delete();
     }
     
 }
