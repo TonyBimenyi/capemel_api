@@ -44,5 +44,6 @@ Route::controller(ParoisseController::class)->group(function(){
     Route::post('/store_paroisse','store');
     Route::get('/paroisses','show');
     Route::put('/update_paroisse/{id}','update');
+    Route::post('/delete_paroisse/{id}','delete');
 });
  

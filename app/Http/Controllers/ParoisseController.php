@@ -58,4 +58,10 @@ class ParoisseController extends Controller
          $input = $request->all();  
          $updateP->fill($input)->update();
     }
+    public function delete(Request $request,$id)
+    {
+        // code...
+         $deleteP = Paroisse::findOrFail($id);
+         $deleteP->delete();
+    }
 }
