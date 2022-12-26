@@ -38,7 +38,15 @@ class DistrictController extends Controller
     public function show()
     {
         // code...
-        $districts = District::with('conference')->get();
+        $conference_select = \Request::get('conference_select');
+
+        $districts = District::with('conference')
+        ->where(function($query) use($conference_select){
+            if($conference_select){
+                $query->where('id_conference', '=',$conference_select);
+            }
+        })
+        ->get();
         return $districts;
 
     }
