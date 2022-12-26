@@ -40,8 +40,15 @@ class ParoisseController extends Controller
     public function show()
     {
         // code...
-        $paroisses = Paroisse::all();
+        $paroisses = Paroisse::with('district')->get();
 
         return $paroisses;
+    }
+      public function update(Request $request,$id)
+    {
+        // code...
+         $updateP = Paroisse::findOrFail($id);
+         $input = $request->all();  
+         $updateP->fill($input)->update();
     }
 }

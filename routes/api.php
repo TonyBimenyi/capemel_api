@@ -42,6 +42,7 @@ Route::controller(DistrictController::class)->group(function(){
 });
 Route::controller(ParoisseController::class)->group(function(){
     Route::post('/store_paroisse','store');
-     Route::get('/paroisses','show');
+    Route::get('/paroisses','show');
+    Route::put('/update_paroisse/{id}','update');
 });
  
