@@ -40,7 +40,14 @@ class ParoisseController extends Controller
     public function show()
     {
         // code...
-        $paroisses = Paroisse::with('district')->get();
+        $district_select = \Request::get('district_select');
+        $paroisses = Paroisse::with('district')
+        ->where(function($query) use($district_select){
+            if($district_select){
+                $query->where('id_district', '=',$district_select);
+            }
+        })
+        ->get();
 
         return $paroisses;
     }
