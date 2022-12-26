@@ -6,6 +6,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ConferenceController;
 use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\ParoisseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,5 +39,9 @@ Route::controller(DistrictController::class)->group(function(){
     Route::get('/districts','show');
     Route::put('/update_district/{id}','update');
     Route::post('/delete_district/{id}','delete');
+});
+Route::controller(ParoisseController::class)->group(function(){
+    Route::post('/store_paroisse','store');
+     Route::get('/paroisses','show');
 });
  
