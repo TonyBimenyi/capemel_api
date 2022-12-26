@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\District;
 
 class District extends Model
 {
@@ -18,4 +19,8 @@ class District extends Model
         'email_sur_district',
         'phone_sur_district'
     ];
+    public function conference()
+    {
+        return $this->hasMany(Conference::class,'id','id_conference');
+    }
 }

@@ -38,7 +38,7 @@ class DistrictController extends Controller
     public function show()
     {
         // code...
-        $districts = District::all();
+        $districts = District::with('conference')->get();
         return $districts;
 
     }

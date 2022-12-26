@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\District;
 
 class Conference extends Model
 {
@@ -14,4 +15,7 @@ class Conference extends Model
         'id',
         'nom_conference',
     ];
+    public function district(){
+        return $this->belongsTo(related:District::class,foreignKey:'id_conference');
+    }
 }
