@@ -19,6 +19,7 @@ class Membre extends Model
         'date_naissance_membre',
         'colline_membre',
         'commune_membre',
+        'province_membre',
         'nationalite_conjoint',
         'cin_membre',
         'debut_ministere_membre',

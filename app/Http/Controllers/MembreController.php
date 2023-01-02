@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Membre;
 
-class MembreControlller extends Controller
+class MembreController extends Controller
 {
     //
      public function store(Request $request)
@@ -14,15 +14,18 @@ class MembreControlller extends Controller
         # code...
         $date = Carbon::now()->format('Y');
         $count = Membre::count()+1;
+        $file = $request->file('photo_membre');
+        $ext = $file->getClientOriginalExtension();
+        $filename = time().'.'.$ext;
+        $file->move('assets/uploads/',$filename);
 
         $request->validate([
-            'matricule_membre'=>'required|unique'
+            'photo_membre'=>'required|mimes:jpeg,jpg,png|max:2048',
             'nom_membre'=>'required',
-            'email'=>'unique',
-            'cin_membre'=>'unique',
+            'cin_membre'=>'required',
         ]);
         $membre = new Membre([
-            'matricule_membre'=>'CAPEMEL-'$date'/0'$count,
+            'matricule_membre'=>'CAPEMEL-'.$date.'/0'.$count,
             'nom_membre'=>$request->get('nom_membre'),
             'prenom_membre'=>$request->get('prenom_membre'),
             'nom_pere_membre'=>$request->get('nom_pere_membre'),
@@ -30,9 +33,10 @@ class MembreControlller extends Controller
             'date_naissance_membre'=>$request->get('date_naissance_membre'),
             'colline_membre'=>$request->get('colline_membre'),
             'commune_membre'=>$request->get('commune_membre'),
+            'province_membre'=>$request->get('province_membre'),
             'cin_membre'=>$request->get('cin_membre'),
             'debut_ministere_membre'=>$request->get('debut_ministere_membre'),
-            'debut_cotisation_membre'=>'-',
+            'debut_cotisation_membre'=>'2000-01-01 00:00:00',
             'date_mariage'=>$request->get('date_mariage'),
             'telephone_membre'=>$request->get('telephone_membre'),
             'photo_membre'=>$request->get('photo_membre'),

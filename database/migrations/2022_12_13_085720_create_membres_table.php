@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('date_naissance_membre')->nullable();
             $table->string('colline_membre')->nullable();
             $table->string('commune_membre')->nullable();
+            $table->string('province_membre')->nullable();
             $table->foreignId('nationalite_conjoint')->constrained('pays')->nullable();
             $table->string('cin_membre')->nullable();
             $table->date('debut_ministere_membre');
