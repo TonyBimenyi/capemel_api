@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('nom_district');
             $table->foreignId('id_conference')->constrained('conferences');
+            $table->string('nom_sur_district')->nullable();
+            $table->Integer('phone_sur_district',80)->nullable();
+            $table->string('email_sur_district')->nullable();
             $table->timestamps();
         });
     }

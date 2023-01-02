@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('nom_paroisse');
             $table->foreignId('id_district')->constrained('districts');
+            $table->string('nom_tut_paroisse')->nullable();
+            $table->Integer('phone_tut_paroisse',80)->nullable();
+            $table->string('email_tut_paroisse')->nullable();
             $table->timestamps();
         });
     }

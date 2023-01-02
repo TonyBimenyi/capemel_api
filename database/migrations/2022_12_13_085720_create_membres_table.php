@@ -22,7 +22,7 @@ return new class extends Migration
             $table->date('date_naissance_membre')->nullable();
             $table->string('colline_membre')->nullable();
             $table->string('commune_membre')->nullable();
-            $table->foreignId('nationalite_conjoint')->constrained('pays');
+            $table->foreignId('nationalite_conjoint')->constrained('pays')->nullable();
             $table->string('cin_membre')->nullable();
             $table->date('debut_ministere_membre');
             $table->date('debut_cotisation_membre')->nullable();
@@ -31,7 +31,6 @@ return new class extends Migration
             $table->Integer('telephone_membre')->unique()->nullable();
             $table->string('photo_membre')->nullable();
             $table->string('statut')->nullable();
-            $table->Integer('surintendant');
             $table->foreignId('id_uti')->constrained('users');
             $table->foreignId('id_paroisse')->constrained('paroisses');
             $table->foreignId('id_categorie')->constrained('categories');

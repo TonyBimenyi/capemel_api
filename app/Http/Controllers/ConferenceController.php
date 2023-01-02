@@ -14,4 +14,9 @@ class ConferenceController extends Controller
         $conferences = Conference::all();
         return  $conferences;
     }
+    public function store(Request $request)
+    {
+        // code...
+        
+    }
 }
