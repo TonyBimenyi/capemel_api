@@ -8,6 +8,7 @@ use App\Http\Controllers\ConferenceController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\ParoisseController;
 use App\Http\Controllers\MembreController;
+use App\Http\Controllers\CategorieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,4 +55,6 @@ Route::controller(MembreController::class)->group(function(){
     Route::put('/update_paroisse/{id}','update');
     Route::post('/delete_paroisse/{id}','delete');
 });
- 
+Route::controller(CategorieController::class)->group(function(){
+    Route::get('/categories','show');
+});

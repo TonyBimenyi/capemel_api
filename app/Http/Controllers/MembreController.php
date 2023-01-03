@@ -14,13 +14,13 @@ class MembreController extends Controller
         # code...
         $date = Carbon::now()->format('Y');
         $count = Membre::count()+1;
-        $file = $request->file('photo_membre');
-        $ext = $file->getClientOriginalExtension();
-        $filename = time().'.'.$ext;
-        $file->move('assets/uploads/',$filename);
+        // $file = $request->file('photo_membre');
+        // $ext = $file->getClientOriginalExtension();
+        // $filename = time().'.'.$ext;
+        // $file->move('assets/uploads/',$filename);
 
         $request->validate([
-            'photo_membre'=>'required|mimes:jpeg,jpg,png|max:2048',
+            
             'nom_membre'=>'required',
             'cin_membre'=>'required',
         ]);
@@ -36,10 +36,9 @@ class MembreController extends Controller
             'province_membre'=>$request->get('province_membre'),
             'cin_membre'=>$request->get('cin_membre'),
             'debut_ministere_membre'=>$request->get('debut_ministere_membre'),
-            'debut_cotisation_membre'=>'2000-01-01 00:00:00',
+            'debut_cotisation_membre'=>'1000-01-01 00:00:00',
             'date_mariage'=>$request->get('date_mariage'),
             'telephone_membre'=>$request->get('telephone_membre'),
-            'photo_membre'=>$request->get('photo_membre'),
             'statut'=>'actif',
             'id_uti'=>$request->get('id_uti'),
             'id_paroisse'=>$request->get('id_paroisse'),
