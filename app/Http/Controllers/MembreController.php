@@ -22,7 +22,13 @@ class MembreController extends Controller
         $request->validate([
             
             'nom_membre'=>'required',
-            'cin_membre'=>'required',
+            'id_categorie'=>'required',
+            'id_paroisse'=>'required',
+        ],
+        [
+            'nom_membre.required'=>'Le nom du membre est obligatoire',
+            'id_categorie.required'=>'La categorie est obligatoire',
+            'id_paroisse.required'=>'La Paroisse est obligatoire',
         ]);
         $membre = new Membre([
             'matricule_membre'=>'CAPEMEL-'.$date.'/0'.$count,
@@ -36,7 +42,7 @@ class MembreController extends Controller
             'province_membre'=>$request->get('province_membre'),
             'cin_membre'=>$request->get('cin_membre'),
             'debut_ministere_membre'=>$request->get('debut_ministere_membre'),
-            'debut_cotisation_membre'=>'1000-01-01 00:00:00',
+            'debut_cotisation_membre'=>null,
             'date_mariage'=>$request->get('date_mariage'),
             'telephone_membre'=>$request->get('telephone_membre'),
             'statut'=>'actif',
