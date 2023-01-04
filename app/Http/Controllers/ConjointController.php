@@ -12,8 +12,8 @@ class ConjointController extends Controller
     public function show($id)
     {
         // code...
-        $conjoint = Conjoint::
-        where('matricule_membre','=',$id)
+        $conjoint = Conjoint::with('user','paroisse')
+        ->where('matricule_membre','=',$id)
         ->get();
         return $conjoint;
     }
@@ -30,7 +30,8 @@ class ConjointController extends Controller
             'nom_conjoint'=>'required',
             'prenom_conjoint'=>'required',
             'id_paroisse'=>'required',
-            'matricule_membre'=>'required|unique'
+            'matricule_membre'=>'unique:conjoints|required',
+            'cin_conjoint'=>'unique:conjoints',
         ],
         [
             'nom_conjoint.required'=>'Le nom du conjoint est obligatoire',
@@ -38,8 +39,9 @@ class ConjointController extends Controller
             'id_paroisse.required'=>'La Paroisse est obligatoire',
             'matricule_membre.unique'=>'Chaque membre doit avoir un(e) conjoint(e)'
         ]);
+         $user = Auth::user();
         $conjoint = new Conjoint([
-            $user = Auth::user();
+           
             'nom_conjoint'=>$request->get('nom_conjoint'),
             'prenom_conjoint'=>$request->get('prenom_conjoint'),
             'nom_pere_conjoint'=>$request->get('nom_pere_conjoint'),
@@ -51,11 +53,11 @@ class ConjointController extends Controller
             'nationalite_conjoint'=>$request->get('nationalite_conjoint'),
             'cin_conjoint'=>$request->get('cin_conjoint'),
             'etat_civil_conjoint'=>$request->get('etat_civil_conjoint'),
-            'fonction_conjoint'=>$request->get('fonction_conjoint'),,
+            'fonction_conjoint'=>$request->get('fonction_conjoint'),
             'telephone_conjoint'=>$request->get('telephone_conjoint'),
             'photo_conjoint'=>null,
             'id_paroisse'=>$request->get('id_paroisse'),
-            'id_uti'=>$user->id,
+            'id_uti'=>$request->get('id_uti'),
             'matricule_membre'=>$request->get('matricule_membre'),
         ]);
         $conjoint->save();

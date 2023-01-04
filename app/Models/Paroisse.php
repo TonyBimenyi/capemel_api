@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\District;
 use App\Models\Paroisse;
+use App\Models\Conjoint;
 
 class Paroisse extends Model
 {
@@ -29,5 +30,8 @@ class Paroisse extends Model
 
     public function membre(){
         return $this->belongsTo(related:Membre::class,foreignKey:'id_paroisse');
+    }
+     public function conjoint(){
+        return $this->belongsTo(related:Conjoint::class,foreignKey:'id_paroisse');
     }
 }

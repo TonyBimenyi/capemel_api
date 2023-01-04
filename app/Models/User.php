@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Membre;
+use App\Models\Conjoint;
 
 class User extends Authenticatable
 {
@@ -47,5 +48,8 @@ class User extends Authenticatable
     ];
       public function membre(){
         return $this->belongsTo(related:Membre::class,foreignKey:'id_uti');
+    }
+     public function conjoint(){
+        return $this->belongsTo(related:Conjoint::class,foreignKey:'id_uti');
     }
 }

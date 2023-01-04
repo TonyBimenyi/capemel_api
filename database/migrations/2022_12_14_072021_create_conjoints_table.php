@@ -23,9 +23,9 @@ return new class extends Migration
             $table->string('colline_conjoint')->nullable();
             $table->string('commune_conjoint')->nullable();
             $table->string('province_membre')->nullable();
-            $table->foreignId('nationalite_conjoint')->constrained('pays');
+            $table->foreignId('nationalite_conjoint')->constrained('pays')->nullable();
             $table->string('cin_conjoint');
-            $table->string('etat_civil_conjoint');
+            $table->string('etat_civil_conjoint')->nullable();
             $table->string('fonction_conjoint')->nullable();
             $table->Integer('telephone_conjoint')->nullable()->unique();
             $table->string('photo_conjoint')->nullable();
