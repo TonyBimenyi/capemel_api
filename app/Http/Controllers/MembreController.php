@@ -9,6 +9,21 @@ use App\Models\Membre;
 class MembreController extends Controller
 {
     //
+    public function show()
+    {
+        // code...
+        $membres = Membre::with('categorie','user','paroisse')
+        ->get();
+        return  $membres;
+    }
+     public function info_membre($id)
+    {
+        // code...
+        $info_membre = Membre::with('categorie','user','paroisse')
+        ->where('matricule_membre','=',$id)
+        ->get();
+        return $info_membre;
+    }
      public function store(Request $request)
     {
         # code...
@@ -31,7 +46,7 @@ class MembreController extends Controller
             'id_paroisse.required'=>'La Paroisse est obligatoire',
         ]);
         $membre = new Membre([
-            'matricule_membre'=>'CAPEMEL-'.$date.'/0'.$count,
+            'matricule_membre'=>'CAPEMEL-'.$date.'-0'.$count,
             'nom_membre'=>$request->get('nom_membre'),
             'prenom_membre'=>$request->get('prenom_membre'),
             'nom_pere_membre'=>$request->get('nom_pere_membre'),
@@ -59,4 +74,5 @@ class MembreController extends Controller
 
          return response()->json($response,200); 
     }
+
 }

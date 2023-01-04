@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\Paroisse;
+use App\Models\Categorie;
 
 class Membre extends Model
 {
     use HasFactory;
     protected $table = 'membres';
-    protected $primaryKey = 'matricule_membre';
     protected $fillable = [
         'matricule_membre',
         'nom_membre',
@@ -33,4 +35,16 @@ class Membre extends Model
         'id_paroisse',
         'id_categorie',
     ];
+     public function paroisse()
+    {
+        return $this->hasMany(Paroisse::class,'id','id_paroisse');
+    }
+     public function user()
+    {
+        return $this->hasMany(User::class,'id','id_uti');
+    }
+     public function categorie()
+    {
+        return $this->hasMany(categorie::class,'id','id_categorie');
+    }
 }

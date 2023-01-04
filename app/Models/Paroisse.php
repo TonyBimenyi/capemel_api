@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\District;
+use App\Models\Paroisse;
 
 class Paroisse extends Model
 {
@@ -23,5 +24,10 @@ class Paroisse extends Model
     public function district()
     {
         return $this->hasMany(District::class,'id','id_district');
+    }
+
+
+    public function membre(){
+        return $this->belongsTo(related:Membre::class,foreignKey:'id_paroisse');
     }
 }

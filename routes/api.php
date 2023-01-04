@@ -51,6 +51,8 @@ Route::controller(ParoisseController::class)->group(function(){
 
 Route::controller(MembreController::class)->group(function(){
     Route::post('/store_membre','store');
+    Route::get('/membres','show');
+    Route::get('/info_membre/{id}','info_membre');
 });
 Route::controller(CategorieController::class)->group(function(){
     Route::get('/categories','show');
