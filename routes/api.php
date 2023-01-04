@@ -9,6 +9,7 @@ use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\ParoisseController;
 use App\Http\Controllers\MembreController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\ConjointController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,4 +57,9 @@ Route::controller(MembreController::class)->group(function(){
 });
 Route::controller(CategorieController::class)->group(function(){
     Route::get('/categories','show');
+});
+Route::controller(ConjointController::class)->group(function(){
+    Route::post('/store_conjoint','store');
+    Route::get('/conjoint/{id}','show');
+
 });
