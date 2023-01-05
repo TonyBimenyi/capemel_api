@@ -69,4 +69,5 @@ Route::controller(EnfantController::class)->group(function(){
     Route::get('/enfants/{id}','show');
     Route::post('/store_enfant','store');
     Route::put('/update_enfant/{id}','update');
+    Route::post('/delete_enfant/{id}','delete');
 });

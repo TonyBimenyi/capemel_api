@@ -56,12 +56,18 @@ class EnfantController extends Controller
        $updateE = Enfant::findOrFail($id);
          $input = $request->all();
          $updateE->fill($input)->update();
-        $updateE->update();
+         $updateE->update();
          $response = [
             'success'=>true,
             'data'=>$updateE,
             'message'=>"Enfant register successfully"
         ];
         return response()->json($response,200);
+    }
+     public function delete($id)
+     {
+        // code...
+         $deleteE = Enfant::findOrFail($id);
+         $deleteE->delete();
     }
 }
