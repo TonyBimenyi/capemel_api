@@ -10,6 +10,7 @@ use App\Http\Controllers\ParoisseController;
 use App\Http\Controllers\MembreController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ConjointController;
+use App\Http\Controllers\EnfantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,11 @@ Route::controller(CategorieController::class)->group(function(){
 });
 Route::controller(ConjointController::class)->group(function(){
     Route::post('/store_conjoint','store');
+    Route::put('/update_conjoint/{id}','update');
     Route::get('/conjoint/{id}','show');
-
+    Route::post('/delete_conjoint/{id}','delete');
+});
+Route::controller(EnfantController::class)->group(function(){
+    Route::get('/enfants/{id}','show');
+    Route::post('/store_enfant','store');
 });
