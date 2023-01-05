@@ -9,7 +9,9 @@ class Enfant extends Model
 {
     use HasFactory;
     protected $table = 'enfants';
+    protected $primaryKey ='id';
     protected $fillable = [
+      'id',
       'nom_enfant',
       'prenom_enfant',
       'date_naissance_enfant',

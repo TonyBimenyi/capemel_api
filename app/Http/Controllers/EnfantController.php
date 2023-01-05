@@ -49,4 +49,19 @@ class EnfantController extends Controller
 
          return response()->json($response,200); 
     }   
+      public function update(Request $request,$id)
+    {
+        // code...
+
+       $updateE = Enfant::findOrFail($id);
+         $input = $request->all();
+         $updateE->fill($input)->update();
+        $updateE->update();
+         $response = [
+            'success'=>true,
+            'data'=>$updateE,
+            'message'=>"Enfant register successfully"
+        ];
+        return response()->json($response,200);
+    }
 }
