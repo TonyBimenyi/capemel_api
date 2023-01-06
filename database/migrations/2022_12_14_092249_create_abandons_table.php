@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->Float('montant_anticipe');
             $table->string('motif')->nullable();
+            $table->string('type_abandon');
             $table->string('matricule_membre');
             $table->foreign('matricule_membre')->references('matricule_membre')
             ->on('membres')->onDelete('cascade')->onUpdate('cascade');
