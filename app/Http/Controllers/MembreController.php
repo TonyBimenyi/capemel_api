@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Membre;
+use App\Models\District;
 
 class MembreController extends Controller
 {
@@ -12,7 +13,15 @@ class MembreController extends Controller
     public function show()
     {
         // code...
+        $district_select = \Request::get('district_select');
         $membres = Membre::with('categorie','user','paroisse')
+        ->join('paroisses','membres.id_paroisse','=','paroisses.id')
+        ->where(function($query) use($district_select){
+            if($district_select){
+                 
+                $query->where('paroisses.id_district', '=',$district_select);
+            }
+        })
         ->get();
         return  $membres;
     }

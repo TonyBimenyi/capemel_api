@@ -15,13 +15,12 @@ return new class extends Migration
     {
         Schema::create('cotisations', function (Blueprint $table) {
             $table->id();
-            $table->Float('cotisation_exige');
+            $table->Float('montant_total');
             $table->Integer('trimestre');
             $table->string('annee',11);
-            $table->string('donneur');
-            $table->string('matricule_membre');
-            $table->foreign('matricule_membre')->references('matricule_membre')
-            ->on('membres')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('donneur_district');
+            $table->foreign('donneur_district')->references('id')
+            ->on('districts')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_uti')->constrained('users');
             $table->timestamps();
         });
