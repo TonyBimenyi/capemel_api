@@ -11,6 +11,7 @@ use App\Http\Controllers\MembreController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ConjointController;
 use App\Http\Controllers\EnfantController;
+use App\Http\Controllers\CotisationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,4 +71,7 @@ Route::controller(EnfantController::class)->group(function(){
     Route::post('/store_enfant','store');
     Route::put('/update_enfant/{id}','update');
     Route::post('/delete_enfant/{id}','delete');
+});
+Route::controller(CotisationController::class)->group(function(){
+    Route::post('store_cotisation/','store');
 });
