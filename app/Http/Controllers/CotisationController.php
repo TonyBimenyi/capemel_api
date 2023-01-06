@@ -36,4 +36,11 @@ class CotisationController extends Controller
 
     return response()->json($response,200); 
     }
+    public function show()
+    {
+        // code...
+        $cotisations = Cotisation::with('membre')
+        ->get();
+        return $cotisations;
+    }
 }

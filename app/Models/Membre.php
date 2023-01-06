@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Paroisse;
 use App\Models\Categorie;
+use App\Models\Cotisation;
 
 class Membre extends Model
 {
@@ -46,5 +47,10 @@ class Membre extends Model
      public function categorie()
     {
         return $this->hasMany(categorie::class,'id','id_categorie');
+    }
+
+
+    public function cotisation(){
+        return $this->belongsTo(related:Cotisation::class,foreignKey:'matricule_membre');
     }
 }

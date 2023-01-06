@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Membre;
 
 class Cotisation extends Model
 {
@@ -17,4 +18,8 @@ class Cotisation extends Model
         'matricule_membre',
         'id_uti',
     ];
+     public function membre()
+    {
+        return $this->hasMany(Membre::class,'matricule_membre','matricule_membre');
+    }
 }
