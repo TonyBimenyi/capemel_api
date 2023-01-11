@@ -43,4 +43,31 @@ class CotisationController extends Controller
         ->get();
         return $cotisations;
     }
+    public function update(Request $request,$id)
+    {
+        # code...
+         $request->validate([         
+            'montant_total'=>'required',
+            'trimestre'=>'unique:cotisations,matricule_membre|required',
+            'matricule_membre'
+        ],
+        [
+            'montant_total.required'=>'Le montant_total est obligatoire',
+            'prenom_conjoint.required'=>'Le prenom du conjoint est obligatoire',
+            'id_paroisse.required'=>'La Paroisse est obligatoire',
+            'matricule_membre.matricule_membre.unique'=>'Chaque membre doit avoir un(e) conjoint(e)'
+        ]);
+         $updateCot = Cotisation::findOrFail($id);
+         $input = $request->all();
+         $updateCot->fill($input)->update();
+         $updateCot->update();
+            
+          $response = [
+            'success'=>true,
+            'data'=>$updateCot,
+            'message'=>"Paroisse register successfully"
+        ];
+
+    return response()->json($response,200); 
+    }
 }

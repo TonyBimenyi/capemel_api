@@ -14,7 +14,8 @@ class Cotisation extends Model
     protected $fillable = [
         'id',
         'montant_total',
-        'trimestre_annee',
+        'trimestre',
+        'annee',
         'matricule_membre',
         'id_uti',
     ];

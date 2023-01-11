@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('abandons', function (Blueprint $table) {
             $table->id();
-            $table->Float('montant_anticipe');
             $table->string('motif')->nullable();
             $table->string('type_abandon');
             $table->string('matricule_membre');

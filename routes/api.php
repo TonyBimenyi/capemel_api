@@ -75,4 +75,5 @@ Route::controller(EnfantController::class)->group(function(){
 Route::controller(CotisationController::class)->group(function(){
     Route::post('store_cotisation/','store');
     Route::get('cotisations/','show');
+    Route::put('update_cotisation/{id}','update');
 });
