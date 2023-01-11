@@ -12,6 +12,7 @@ use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ConjointController;
 use App\Http\Controllers\EnfantController;
 use App\Http\Controllers\CotisationController;
+use App\Http\Controllers\AbandonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,4 +77,8 @@ Route::controller(CotisationController::class)->group(function(){
     Route::post('store_cotisation/','store');
     Route::get('cotisations/','show');
     Route::put('update_cotisation/{id}','update');
+});
+Route::controller(AbandonController::class)->group(function(){
+    Route::post('store_abandon','store');
+
 });

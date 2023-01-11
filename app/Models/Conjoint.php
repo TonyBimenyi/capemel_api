@@ -12,6 +12,7 @@ class Conjoint extends Model
 {
     use HasFactory;
     protected $table = 'conjoints';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'nom_conjoint',
         'prenom_conjoint',

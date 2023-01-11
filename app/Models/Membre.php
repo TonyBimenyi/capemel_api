@@ -13,6 +13,9 @@ class Membre extends Model
 {
     use HasFactory;
     protected $table = 'membres';
+    protected $primaryKey = 'matricule_membre';
+    public $incrementing = false;
+    protected $keyType  = 'string';
     protected $fillable = [
         'matricule_membre',
         'nom_membre',
