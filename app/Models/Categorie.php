@@ -14,6 +14,7 @@ class Categorie extends Model
     protected $fillable = [
         'id',
         'nom_categorie',
+        'montant_a_paye',
     ];
      public function membre(){
         return $this->belongsTo(related:Membre::class,foreignKey:'id_categorie');

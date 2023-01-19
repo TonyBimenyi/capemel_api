@@ -13,9 +13,12 @@ class Cotisation extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'id',
-        'montant_total',
+        'montant_paye',
+        'montant_a_paye',
         'trimestre',
         'annee',
+        'numero_bordereau',
+        'date_paiement',
         'matricule_membre',
         'id_uti',
     ];

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('nom_categorie');
+            $table->Float('montant_a_paye');
             $table->timestamps();
         });
     }

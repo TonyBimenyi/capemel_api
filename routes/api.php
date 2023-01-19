@@ -57,6 +57,7 @@ Route::controller(MembreController::class)->group(function(){
     Route::post('/store_membre','store');
     Route::get('/membres','show');
     Route::get('/info_membre/{id}','info_membre');
+    Route::get('/sumCotisation/{id}','sumCotisation');
 });
 Route::controller(CategorieController::class)->group(function(){
     Route::get('/categories','show');
@@ -75,10 +76,11 @@ Route::controller(EnfantController::class)->group(function(){
 });
 Route::controller(CotisationController::class)->group(function(){
     Route::post('store_cotisation/','store');
+    Route::get('membreCot','membreCot');
     Route::get('cotisations/','show');
     Route::put('update_cotisation/{id}','update');
 });
 Route::controller(AbandonController::class)->group(function(){
     Route::post('store_abandon','store');
-
+    Route::get('abandons','show');
 });

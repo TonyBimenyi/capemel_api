@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Membre;
 use App\Models\District;
+use DB;
 
 class MembreController extends Controller
 {
@@ -33,6 +34,7 @@ class MembreController extends Controller
         ->get();
         return $info_membre;
     }
+
      public function store(Request $request)
     {
         # code...
@@ -82,6 +84,20 @@ class MembreController extends Controller
         ];
 
          return response()->json($response,200); 
+    }
+    public function sumCotisation($id)
+    {
+        # code..
+        // $membres = Membre::with('categorie','user','paroisse')
+        // ->join('paroisses','membres.id_paroisse','=','paroisses.id')
+        $sumMembre = DB::table('membres')
+        ->join('cotisations','cotisations.matricule_membre','=','membres.matricule_membre')
+        ->select('membres.matricule_membre',DB::raw('sum(cotisations.montant_paye) as sum_cotisation'))
+        ->where('membres.matricule_membre','=',$id)
+        ->groupBy('membres.matricule_membre')
+        ->get();
+
+        return $sumMembre;
     }
 
 }

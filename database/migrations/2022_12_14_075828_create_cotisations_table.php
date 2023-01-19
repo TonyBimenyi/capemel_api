@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('cotisations', function (Blueprint $table) {
             $table->id();
-            $table->Float('montant_total');
+            $table->Float('montant_paye');
+            $table->Float('montant_a_paye');
             $table->string('trimestre',50);
             $table->Integer('annee',10);
+            $table->string('numero_bordereau');
+            $table->Date('date_paiement')->nullable();
             $table->string('matricule_membre');
             $table->foreign('matricule_membre')->references('matricule_membre')
             ->on('membres')->onDelete('cascade')->onUpdate('cascade');

@@ -40,4 +40,10 @@ class AbandonController extends Controller
     // return response()->json($response,200); 
 
     }
+    public function show()
+    {
+        # code...
+        $abandons = Abandon::get();
+        return $abandons;
+    }
 }
