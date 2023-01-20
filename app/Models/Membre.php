@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Paroisse;
 use App\Models\Categorie;
 use App\Models\Cotisation;
+use App\Models\Abandon;
 
 class Membre extends Model
 {
@@ -55,5 +56,8 @@ class Membre extends Model
 
     public function cotisation(){
         return $this->belongsTo(related:Cotisation::class,foreignKey:'matricule_membre');
+    }
+    public function abandon(){
+        return $this->belongsTo(related:Abandon::class,foreignKey:'matricule_membre');
     }
 }
