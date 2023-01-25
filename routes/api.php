@@ -90,4 +90,5 @@ Route::controller(StatController::class)->group(function(){
     Route::get('paroisse_count','paroisse_count');
     Route::get('membre_count','membre_count');
     Route::get('pension_count','pension_count');
+    Route::get('cotisation_total','cotisation_total');
 });

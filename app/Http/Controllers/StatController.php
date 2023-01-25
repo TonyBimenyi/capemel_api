@@ -7,6 +7,7 @@ use App\Models\District;
 use App\Models\Paroisse;
 use App\Models\Membre;
 use App\Models\Pension;
+use DB;
 
 class StatController extends Controller
 {
@@ -35,5 +36,13 @@ class StatController extends Controller
     	# code...
     	$pensions = Pension::count();
     	return $pensions;
+    }
+    public function cotisation_total()
+    {
+    	# code...
+    	 $cot_total = DB::table('cotisations')
+        ->select(DB::raw('sum(montant_paye) as "cotisation_total"'))
+        ->get();
+        return $cot_total;
     }
 }
