@@ -45,4 +45,12 @@ class StatController extends Controller
         ->get();
         return $cot_total;
     }
+    public function cotisation_total_non_paye()
+    {
+    	# code...
+         $cot_total_a_paye = DB::table('cotisations')
+        ->select(DB::raw('sum(montant_a_paye) as "cotisation_total"'))
+        ->get();
+        return $cot_total_a_paye;
+    }
 }
