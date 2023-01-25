@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\District;
 use App\Models\Paroisse;
 use App\Models\Membre;
+use App\Models\Pension;
 
 class StatController extends Controller
 {
@@ -28,5 +29,11 @@ class StatController extends Controller
     	# code...
     	$membres = Membre::count();
     	return $membres;
+    }
+    public function pension_count()
+    {
+    	# code...
+    	$pensions = Pension::count();
+    	return $pensions;
     }
 }
