@@ -88,4 +88,5 @@ Route::controller(AbandonController::class)->group(function(){
 Route::controller(StatController::class)->group(function(){
     Route::get('district_count','district_count');
     Route::get('paroisse_count','paroisse_count');
+    Route::get('membre_count','membre_count');
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\District;
 use App\Models\Paroisse;
+use App\Models\Membre;
 
 class StatController extends Controller
 {
@@ -21,5 +22,11 @@ class StatController extends Controller
     	# code...
     	$paroisses = Paroisse::count();
     	return $paroisses;
+    }
+     public function membre_count()
+    {
+    	# code...
+    	$membres = Membre::count();
+    	return $membres;
     }
 }
