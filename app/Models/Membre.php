@@ -57,7 +57,7 @@ class Membre extends Model
     public function cotisation(){
         return $this->belongsTo(related:Cotisation::class,foreignKey:'matricule_membre');
     }
-    public function abandon(){
-        return $this->belongsTo(related:Abandon::class,foreignKey:'matricule_membre');
-    }
+    // public function abandon(){
+    //     return $this->belongsTo(related:Abandon::class,foreignKey:'matricule_membre');
+    // }
 }

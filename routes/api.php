@@ -13,6 +13,7 @@ use App\Http\Controllers\ConjointController;
 use App\Http\Controllers\EnfantController;
 use App\Http\Controllers\CotisationController;
 use App\Http\Controllers\AbandonController;
+use App\Http\Controllers\StatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,4 +84,7 @@ Route::controller(CotisationController::class)->group(function(){
 Route::controller(AbandonController::class)->group(function(){
     Route::post('store_abandon','store');
     Route::get('abandons','show');
+});
+Route::controller(StatController::class)->group(function(){
+    Route::get('district_count','district_count');
 });

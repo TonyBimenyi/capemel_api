@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('pensions', function (Blueprint $table) {
             $table->id();
             $table->Float('montant_pension');
+            $table->string('motif_pension');
             $table->string('matricule_membre');
             $table->foreign('matricule_membre')->references('matricule_membre')
             ->on('membres')->onDelete('cascade')->onUpdate('cascade');
