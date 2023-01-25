@@ -7,6 +7,7 @@ use App\Models\District;
 use App\Models\Paroisse;
 use App\Models\Membre;
 use App\Models\Pension;
+use App\Models\Cotisation;
 use DB;
 
 class StatController extends Controller
@@ -52,5 +53,14 @@ class StatController extends Controller
         ->select(DB::raw('sum(montant_a_paye) as "cotisation_total"'))
         ->get();
         return $cot_total_a_paye;
+    }
+    public function recent_cot()
+    {
+    	# code...
+    	$recent_cot = Cotisation::with('membre')
+    	->orderBy('id','desc')
+    	->take(10)
+    	->get();
+    	return $recent_cot;
     }
 }
