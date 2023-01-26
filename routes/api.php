@@ -93,4 +93,5 @@ Route::controller(StatController::class)->group(function(){
     Route::get('cotisation_total','cotisation_total');
     Route::get('cotisation_total_non_paye','cotisation_total_non_paye');
     Route::get('recent_cot','recent_cot');
+    Route::get('top_cot','top_cot');
 });

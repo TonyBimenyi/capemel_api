@@ -63,4 +63,19 @@ class StatController extends Controller
     	->get();
     	return $recent_cot;
     }
+    public function top_cot()
+    {
+    	# code...
+    	 // $cotisations = DB::table('cotisations','districts')
+      //   ->select('districts.nom_district',DB::raw('sum(cotisations.montant_a_paye) as "cotisation_total"'))
+      //   ->groupBy('districts.id')
+      //   ->get();
+    	$cotisations = Cotisation::
+    	join('districts','cotisations.id_district','=','districts.id')
+    	->select('districts.id','districts.nom_district',DB::raw('sum(cotisations.montant_a_paye) as "cotisation_total"'))
+    	->groupBy('districts.id','districts.nom_district')
+    	->orderBy('cotisations.montant_paye','desc')
+    	->get();
+        return $cotisations;
+    }
 }

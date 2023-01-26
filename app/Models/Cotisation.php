@@ -20,6 +20,7 @@ class Cotisation extends Model
         'numero_bordereau',
         'date_paiement',
         'matricule_membre',
+        'id_district',
         'id_uti',
     ];
      public function membre()

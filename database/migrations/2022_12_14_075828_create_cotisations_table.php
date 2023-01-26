@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('matricule_membre');
             $table->foreign('matricule_membre')->references('matricule_membre')
             ->on('membres')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_district')->constrained('districts');
             $table->foreignId('id_uti')->constrained('users');
             $table->timestamps();
         });
