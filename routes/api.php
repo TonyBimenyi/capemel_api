@@ -89,6 +89,7 @@ Route::controller(AbandonController::class)->group(function(){
 });
 Route::controller(PensionController::class)->group(function(){
     Route::post('store_pension','store');
+    Route::get('pensions','show');
 });
 Route::controller(StatController::class)->group(function(){
     Route::get('district_count','district_count');

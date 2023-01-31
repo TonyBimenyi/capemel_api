@@ -9,6 +9,7 @@ use App\Models\Paroisse;
 use App\Models\Categorie;
 use App\Models\Cotisation;
 use App\Models\Abandon;
+use App\Models\Pension;
 
 class Membre extends Model
 {
@@ -52,10 +53,11 @@ class Membre extends Model
     {
         return $this->hasMany(categorie::class,'id','id_categorie');
     }
-
-
     public function cotisation(){
         return $this->belongsTo(related:Cotisation::class,foreignKey:'matricule_membre');
+    }
+     public function pension(){
+        return $this->belongsTo(related:Pensions::class,foreignKey:'matricule_membre');
     }
     // public function abandon(){
     //     return $this->belongsTo(related:Abandon::class,foreignKey:'matricule_membre');

@@ -40,4 +40,11 @@ class PensionController extends Controller
     // return response()->json($response,200); 
 
     }
+    public function show()
+    {
+        # code...
+        $pensions = Pension::with('membre')->get();
+
+        return $pensions;
+    }
 }
