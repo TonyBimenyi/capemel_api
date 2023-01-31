@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nom_categorie');
             $table->Float('montant_a_paye');
+            $table->Float('montant_pension');
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pension;
+use App\Models\Membre;
 
 class PensionController extends Controller
 {
@@ -13,14 +14,14 @@ class PensionController extends Controller
     	# code...
     	$request->validate([         
             'motif_pension'=>'required',
-            'matricule_membre'=>'unique:pension',
+            'matricule_membre'=>'unique:pensions',
         ],
         [
             'matricule_membre.unique'=>'Le membre est deja en pension ',
         ]);
+
         $input = $request->all();
-        $abandon = Pension::create($input);
-            
+        $pension = Pension::create($input);
 
         $membre = new Membre([
            $statut='pensionne',
@@ -32,7 +33,7 @@ class PensionController extends Controller
 
           $response = [
             'success'=>true,
-            'data'=>$abandon,
+            'data'=>$pension,
             'message'=>"Paroisse register successfully"
         ];
 

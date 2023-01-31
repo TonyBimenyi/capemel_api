@@ -14,6 +14,7 @@ use App\Http\Controllers\EnfantController;
 use App\Http\Controllers\CotisationController;
 use App\Http\Controllers\AbandonController;
 use App\Http\Controllers\StatController;
+use App\Http\Controllers\PensionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,10 +81,14 @@ Route::controller(CotisationController::class)->group(function(){
     Route::get('membreCot','membreCot');
     Route::get('cotisations/','show');
     Route::put('update_cotisation/{id}','update');
+    Route::post('delete_cotisation/{id}','delete');
 });
 Route::controller(AbandonController::class)->group(function(){
     Route::post('store_abandon','store');
     Route::get('abandons','show');
+});
+Route::controller(PensionController::class)->group(function(){
+    Route::post('store_pension','store');
 });
 Route::controller(StatController::class)->group(function(){
     Route::get('district_count','district_count');

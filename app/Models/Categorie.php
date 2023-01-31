@@ -15,6 +15,7 @@ class Categorie extends Model
         'id',
         'nom_categorie',
         'montant_a_paye',
+        'montant_pension'
     ];
      public function membre(){
         return $this->belongsTo(related:Membre::class,foreignKey:'id_categorie');

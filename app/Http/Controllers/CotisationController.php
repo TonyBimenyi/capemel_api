@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Cotisation;
 use App\Models\Membre;
 use Illuminate\Support\Facades\Validator;
-
+use DB;
 
 class CotisationController extends Controller
 {
@@ -66,28 +66,17 @@ class CotisationController extends Controller
     {
         // code...
         $cotisations = Cotisation::with('membre')
+        ->orderBy('id','DESC')
         ->get();
         return $cotisations;
     }
     public function update(Request $request,$id)
     {
         # code...
-         $request->validate([         
-            'montant_total'=>'required',
-            'trimestre'=>'unique:cotisations,matricule_membre|required',
-            'matricule_membre'
-        ],
-        [
-            'montant_total.required'=>'Le montant_total est obligatoire',
-            'prenom_conjoint.required'=>'Le prenom du conjoint est obligatoire',
-            'id_paroisse.required'=>'La Paroisse est obligatoire',
-            'matricule_membre.matricule_membre.unique'=>'Chaque membre doit avoir un(e) conjoint(e)'
-        ]);
-         $updateCot = Cotisation::findOrFail($id);
-         $input = $request->all();
-         $updateCot->fill($input)->update();
-         $updateCot->update();
-            
+        $montant_a_paye = $request->get('montant_paye');
+        $updateCot=DB::table('cotisations')
+        ->where('id',$id)
+        ->update(['montant_paye'=>$montant_a_paye]);          
           $response = [
             'success'=>true,
             'data'=>$updateCot,
@@ -103,5 +92,11 @@ class CotisationController extends Controller
         ->where('statut','=','actif')
         ->get();
         return $membre_cotisation;
+    }
+    public function delete($id)
+    {
+      # code...
+      $deleteCot = Cotisation::findOrFail($id);
+      $deleteCot->delete();
     }
 }
