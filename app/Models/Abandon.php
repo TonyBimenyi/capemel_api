@@ -17,8 +17,10 @@ class Abandon extends Model
         'type_abandon',
         'motif',
         'matricule_membre',
-        'id_uti'
+        'id_uti',
+        'created_at_abandon'
     ];
+    const CREATED_AT = 'created_at_abandon';
 
     public function paroisse()
     {

@@ -23,8 +23,11 @@ class Cotisation extends Model
         'id_district',
         'id_uti',
     ];
+    // const CREATED_AT = 'created_at_abandon';
+
      public function membre()
     {
         return $this->hasMany(Membre::class,'matricule_membre','matricule_membre');
     }
+
 }

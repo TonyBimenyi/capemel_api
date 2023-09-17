@@ -65,7 +65,36 @@ class CotisationController extends Controller
     public function show()
     {
         // code...
-        $cotisations = Cotisation::with('membre')
+       $district_select = \Request::get('id_district');
+        $trimestre_select = \Request::get('trimestre_select');
+        $annee_select = \Request::get('annee_select');
+        $cotisations = Cotisation::with(['membre',
+          'membre.paroisse',
+          'membre.paroisse.district'
+      ])
+       
+        //  ->where(function($query) use($district_select,$trimestre_select,$annee_select){
+        //     if($district_select){
+
+        //         $query->where('paroisse.id_district', '=',$district_select);
+        //     }
+        //      if($trimestre_select){
+
+        //         $query->where('cotisations.trimestre', '=',$trimestre_select);
+        //     }
+        //     if($annee_select){
+
+        //         $query->where('cotisations.annee', '=',$annee_select);
+        //     }
+        // })
+        ->whereHas('membre.paroisse', function($q) use($district_select){
+          if($district_select){
+            $q->where('id_district', '=', $district_select );
+
+          }
+
+        })
+        ->where('trimestre', 'like' , '%'. $trimestre_select)
         ->orderBy('id','DESC')
         ->get();
         return $cotisations;

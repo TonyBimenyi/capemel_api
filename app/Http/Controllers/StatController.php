@@ -8,6 +8,8 @@ use App\Models\Paroisse;
 use App\Models\Membre;
 use App\Models\Pension;
 use App\Models\Cotisation;
+use App\Models\Conference;
+use App\Models\Categorie;
 use DB;
 
 class StatController extends Controller
@@ -18,6 +20,18 @@ class StatController extends Controller
     	# code...
     	$districts = District::count();
     	return $districts;
+    }
+     public function conference_count()
+    {
+        # code...
+        $districts = Conference::count();
+        return $districts;
+    }
+     public function categorie_count()
+    {
+        # code...
+        $districts = Categorie::count();
+        return $districts;
     }
 
     public function paroisse_count()
@@ -57,7 +71,9 @@ class StatController extends Controller
     public function recent_cot()
     {
     	# code...
-    	$recent_cot = Cotisation::with('membre')
+    	$recent_cot = Cotisation::with(['membre'
+            ,'membre.categorie'
+    ])
     	->orderBy('id','desc')
     	->take(10)
     	->get();

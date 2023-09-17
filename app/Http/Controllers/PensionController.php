@@ -43,7 +43,39 @@ class PensionController extends Controller
     public function show()
     {
         # code...
-        $pensions = Pension::with('membre')->get();
+          $district_select = \Request::get('district_select');
+        $id_paroisse = \Request::get('id_paroisse');
+        $date_debut = \Request::get('date_debut');
+        $date_fin = \Request::get('date_fin');
+        $pensions = Pension::with([
+            'membre',
+            'membre.categorie',
+            'membre.paroisse',
+            'membre.paroisse.district',
+        ])
+         ->join('membres','membres.matricule_membre','=','pensions.matricule_membre')
+        ->join('paroisses','membres.id_paroisse','=','paroisses.id')
+        ->join('districts','paroisses.id_district','=','districts.id')
+         ->where(function($query) use($district_select,$id_paroisse,$date_debut,$date_fin){
+            if($district_select){
+
+                $query->where('paroisses.id_district', '=',$district_select);
+            }
+             if($id_paroisse){
+
+                $query->where('membres.id_paroisse', '=',$id_paroisse);
+            }
+            if($date_debut){
+
+                $query->whereDate('pensions.created_at_pension', '>=',$date_debut);
+            }
+            if($date_fin){
+
+                $query->whereDate('pensions.created_at_pension', '<=',$date_fin);
+            }
+        })
+         ->orderBy('pensions.id','DESC')
+        ->get();
 
         return $pensions;
     }

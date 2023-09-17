@@ -44,4 +44,8 @@ class Conjoint extends Model
     {
         return $this->hasMany(categorie::class,'id','id_categorie');
     }
+     public function getPhotoConjointAttribute($v){
+
+        return asset('image/'. $v);
+    }
 }

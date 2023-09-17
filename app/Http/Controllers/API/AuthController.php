@@ -15,24 +15,25 @@ class AuthController extends Controller
     {
         // code...
         //validator...
-        $validator = Validator::make($request->all(),[
+         $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|unique:users',
             'password' => 'required',
             'c_password' => 'required|same:password',
             'role' =>'required',
             'telephone' => 'required',
+        ],
+        [
+            'name.required'=>'Le nom  est obligatoire',
+            'email.required'=>'Le Nom d utilisateur est obligatoire',
+            'email.unique'=>'Le username doit etre unique',
+            'password.required'=>'Mot de passe est obligatoire',
+            'password.same'=>'Les mot de passe doivent etre identique',
+            'role.required'=>'Le role  est obligatoire',
+
         ]);
 
-        if($validator->fails()){
-            #code...
-            $response = [
-                'success' => false,
-                'message' => $validator->errors(),
-
-            ];
-            return response()->json($response, 400);
-        }
+       
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
@@ -78,10 +79,26 @@ class AuthController extends Controller
              return response()->json($response,400);
         }
     }
+      public function update(Request $request,$id)
+    {
+        // code...
+         $input = $request->all();
+     
+         $updateD = User::findOrFail($id);
+         $input = $request->all(); 
+         $input['password'] = bcrypt($input['password']); 
+         $updateD->fill($input)->update();
+    }
     public function me(Request $request)
     {
         // code...
         return response()->json(Auth::user());
+    }
+    public function delete($id)
+     {
+        // code...
+         $deleteC = User::findOrFail($id);
+         $deleteC->delete();
     }
 
 }

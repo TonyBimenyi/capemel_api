@@ -128,4 +128,27 @@ class ConjointController extends Controller
          $deleteC = Conjoint::findOrFail($id);
          $deleteC->delete();
     }
+     public function addPicture(Request $request,$id)
+    {
+        # code...
+
+        $request->validate([
+            'image_1' => 'required|image|mimes:jpeg,png,gif,svg|max:5048'
+        ]);
+
+        try {
+          $file = $request->file('image_1');
+          $imageName = time() . '.' . $file->getClientOriginalExtension();
+          $membre = Conjoint::where('id', $id)->firstOrFail();
+          $membre->photo_conjoint = $imageName;
+          $membre->save();
+          $file->move(public_path('image'),  $imageName);
+
+      } catch (\Exception $e) {
+
+      }
+
+      
+      return  'successfully';
+  }
 }

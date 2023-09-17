@@ -17,6 +17,7 @@ class Pension extends Model
         'matricule_membre',
         'id_uti'
     ];
+     const CREATED_AT = 'created_at_pension';
      public function membre()
     {
         return $this->hasMany(Membre::class,'matricule_membre','matricule_membre');
